@@ -5,9 +5,10 @@
 
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.org/packages/"))
+	     '("melpa" . "http://melpa.milkbox.net/packages/"))
 
 (add-to-list 'load-path "~/.emacs.d/plugins")
 (package-initialize)
@@ -67,22 +68,20 @@
             (local-set-key "\C-cd" 'jedi:show-doc)
             (local-set-key (kbd "M-SPC") 'jedi:complete)
             (local-set-key (kbd "M-.") 'jedi:goto-definition)))
-            (setq jedi:complete-on-dot t) 
+
 
 (add-hook 'python-mode-hook 'auto-complete-mode)
 
-(ido-mode t)				
+(ido-mode t)
 
-;; -------------------- extra nice things --------------------
-;; use shift to move around windows
-(windmove-default-keybindings 'shift)
-(show-paren-mode
-
-;; Turn beep off
-(setq visible-bell nil)
-
+;; ;; -------------------- extra nice things --------------------
+;; ;; use shift to move around windows
+;; (windmove-default-keybindings 'shift)
+;; (show-paren-mode t)
+;;  ; Turn beep off
+;; (setq visible-bell nil)
 ; Add cmake listfile names to the mode list.
-(setq auto-mode-alist			
+(setq auto-mode-alist
 	  (append
 	   '(("CMakeLists\\.txt\\'" . cmake-mode))
 	   '(("\\.cmake\\'" . cmake-mode))
@@ -91,3 +90,4 @@
 (autoload 'cmake-mode "~/CMake/Auxiliary/cmake-mode.el" t)
 
 (load-theme 'idea-darkula t)
+
