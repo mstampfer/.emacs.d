@@ -3,14 +3,16 @@
 
 (require 'package)
 
+
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/"))
+
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/"))
-
 (add-to-list 'load-path "~/.emacs.d/plugins")
+
 (package-initialize)
 
 (package-refresh-contents)
@@ -21,7 +23,7 @@
 
 ;; make more packages available with the package installer
 (setq to-install
-      '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck))
+      '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck realgud))
 
 (mapc 'install-if-needed to-install)
 
@@ -60,6 +62,8 @@
 ;; if you need to change your python intepreter, if you want to change it
 (setq jedi:server-command
       '("python2" "/Users/marcel/.emacs.d/elpa/jedi-core-20160709.722/jediepcserver.py"))
+(jedi:install-server)
+
 
 (add-hook 'python-mode-hook
 	  (lambda ()
@@ -89,5 +93,6 @@
 
 (autoload 'cmake-mode "~/CMake/Auxiliary/cmake-mode.el" t)
 
-(load-theme 'idea-darkula t)
 
+(load-theme 'idea-darkula t)
+(jedi:install-server)
