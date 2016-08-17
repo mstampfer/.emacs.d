@@ -5,7 +5,7 @@
 
 
 (add-to-list 'package-archives
-	     '("melpa" . "https://http://melpa.milkbox.net/packages/"))
+	     '("melpa" . "http://melpa.org/packages/"))
 
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
@@ -26,6 +26,10 @@
       '(python-mode magit yasnippet jedi auto-complete autopair find-file-in-repository flycheck realgud))
 
 (mapc 'install-if-needed to-install)
+
+;; hide toolbar and scrollbar
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
 
 (require 'magit)
 (global-set-key "\C-xg" 'magit-status)
@@ -60,9 +64,9 @@
 ;; With the same interpreter you're using.
  
 ;; if you need to change your python intepreter, if you want to change it
-(setq jedi:server-command
-      '("python2" "/Users/marcel/.emacs.d/elpa/jedi-core-20160709.722/jediepcserver.py"))
-(jedi:install-server)
+;; (setq jedi:server-command
+;;       '("python2" "/Users/marcel/.emacs.d/elpa/jedi-core-20160709.722/jediepcserver.py"))
+(jedi:install-server)			
 
 
 (add-hook 'python-mode-hook
@@ -93,5 +97,6 @@
 (autoload 'cmake-mode "~/CMake/Auxiliary/cmake-mode.el" t)
 
 
-(load-theme 'idea-darkula t)
+;;(load-theme 'idea-darkula t)
+(load-theme 'tangotango t)
 (jedi:install-server)
