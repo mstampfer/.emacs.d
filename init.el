@@ -100,7 +100,7 @@
 (global-linum-mode t)
 
 ;;(load-theme 'idea-darkula t)
-(load-theme 'solarized-theme t)
+(load-theme 'tangotange t)
 (jedi:install-server)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
