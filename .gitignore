@@ -1,0 +1,13 @@
+*~
+*.pyc
+*.elc
+*SessionDesktop.el#
+.python-environments/
+SessionDesktop.el
+ac-comphist.dat
+bookmarks
+elpa/
+ido.last
+projectile-bookmarks.eld
+url/
+recentf

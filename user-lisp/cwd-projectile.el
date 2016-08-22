@@ -1,3 +1,7 @@
+;;; Summary --- Integrated find-file
+;; Commentary --- If current working directory is project,
+;; use help-projectile
+;; Else, use find-file
 (require 'projectile)
 (require 'helm-projectile)
 
@@ -6,9 +10,6 @@
 (setq projectile-enable-caching nil)
 (setq projectile-require-project-root t)
 
-;;;; Integrated find-file
-;; If current working directory is project, use help-projectile
-;; Else, use find-file
 (defun cwd-open-file ()
   "Open file using projectile+Helm or ido"
   (interactive)
