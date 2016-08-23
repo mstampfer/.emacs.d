@@ -26,28 +26,39 @@
     (package-install package)))
 
 ;; make more packages available with the package installer
-(setq to-install
-      '(python-mode magit yasnippet jedi auto-complete autopair
-		    find-file-in-repository flycheck realgud helm projectile helm-projectile
-		    flx-ido))
+(setq to-install '(
+		   auto-complete
+		   autopair
+		   bind-key
+		   find-file-in-repository
+		   flx-ido
+		   flycheck
+		   free-keys
+		   helm
+		   helm-projectile
+		   jedi
+		   magit
+		   projectile
+		   python-mode
+		   realgud
+		   yasnippet
+		   ))
 
 (mapc 'install-if-needed to-install)
 
-nd-key is also a helpful tool which gives you a cleaner syntax
 ;; The bind-key package shows you what bindings you've already used
 ;; and if you've shadowed some built-in bindings. It also has a
-;; function for defining your own bindings,
-(install-if-needed "bind-key")
-
-;; key-bindings has a Function Of the same name that shows you all
-;; your currently unused key-bindings.  bind-key is also a helpful
-;; tool which gives you a cleaner syntax for defining your own
-;; bindings. Bind it to "C-h C-k"
-(install-if-needed "key-bindings")
+;; function for defining your own bindings, the bind-keys function is
+;; also a helpful tool which gives You a cleaner syntax for defining
+;; your own bindings. Bind it to "C-h C-k"
 (bind-key "C-h C-k" 'free-keys)
-(bind-key "C-h C-K" 'describe-personal-keybindings)
 
-;; bind comment toggle to "M-c" since "M-;" has the habit of putting
+
+;; key-bindings has a function describe-personal-keybindings that
+;; shows you all your currently unused key-bindings.
+(bind-key "C-h C-l" 'describe-personal-keybindings)
+
+;; bind comment toGgle To "M-c" Since "M-;" Has The habit of putting
 ;; comments at the EOL instead of the front
 (bind-key "M-C" 'toggle-comment)
 
@@ -84,6 +95,12 @@ nd-key is also a helpful tool which gives you a cleaner syntax
 ;; Helm is an Emacs incremental and narrowing framework
 (require 'helm-config)
 
+;; With dired-x installed you can use F, which visits all marked
+;; files. It will attempt to open files and give each file its own
+;; window — which you may not want. To avoid this, and open them in
+;; the background, type C-u F.
+(require 'dired-x)
+
 (global-flycheck-mode t)
 
 ;; open browser with search pattern in Google01
@@ -100,6 +117,11 @@ nd-key is also a helpful tool which gives you a cleaner syntax
 ;; Run projectile or helm-for-files depending if cwd is a project 
 (global-set-key [f9] 'cwd-open-file)
 
+;; deleting duplicate lines is a common operation when working with
+;; data. This function doesn't require the region to be sorted. Bind
+;; it to a key sequence "M-D"
+(bind-key "M-D" 'delete-duplicate-lines)
+
 
 ;; auto-complete mode extra settings
 (setq
@@ -108,23 +130,17 @@ nd-key is also a helpful tool which gives you a cleaner syntax
  ac-use-menu-map t
  ac-candidate-limit 20)
 
-;; ;; Python mode settings
+;; Python mode settings
 (require 'python-mode)
 (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 (setq py-electric-colon-active t)
-(add-hook 'python-mode-hook 'autopair-mode)
-(add-hook 'python-mode-hook 'yas-minor-mode)
-;; 
-;; ;; Jedi settings
-(require 'jedi)
-;; It's also required to run "pip install --user jedi" and "pip
-;; install --user epc" to get the Python side of the library work
-;; correctly.
-;; With the same interpreter you're using.
+
+;; tell emacs how to parse Tex
+(add-hook 'tex-mode-hook #'(lambda () (setq ispell-parser 'tex)))
+
  
-;; if you need to change your python intepreter, if you want to change it
-;; (setq jedi:server-command
-;;       '("python2" "/Users/marcel/.emacs.d/elpa/jedi-core-20160709.722/jediepcserver.py"))
+;; Jedi settings
+(require 'jedi)
 (jedi:install-server)			
 
 
@@ -139,14 +155,17 @@ nd-key is also a helpful tool which gives you a cleaner syntax
 	    ))
 (add-hook 'python-mode-hook 'auto-complete-mode)
 (add-hook 'python-mode-hook 'projectile-mode)
+(add-hook 'python-mode-hook 'autopair-mode)
+(add-hook 'python-mode-hook 'yas-minor-mode)
+(add-hook 'python-mode-hook 'flyspell-prog-mode)
 
 (setq inhibit-startup-screen t)
 (setq jedi:complete-on-dot t)
-(package-install 'realgud)
 (load-library "realgud")
 (load-library "cwd-projectile")
 (load-library "view-debug-line-number")
 (load-library "comment-uncomment-lines")
+(load-library "uniquify-all-lines-region")
 
 ;; enable ido enable basic Ido support for files and buffers
 (require 'flx-ido)
@@ -195,6 +214,7 @@ nd-key is also a helpful tool which gives you a cleaner syntax
    (quote
     ("cdbd0a803de328a4986659d799659939d13ec01da1f482d838b68038c1bb35e8" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "5999e12c8070b9090a2a1bbcd02ec28906e150bb2cdce5ace4f965c76cf30476" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(delete-selection-mode t)
+ '(dired-listing-switches "-alrt")
  '(global-subword-mode t)
  '(global-superword-mode t)
  '(icicle-mode t)
