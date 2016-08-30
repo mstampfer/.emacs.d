@@ -8,6 +8,9 @@
 ;; 
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.org/packages/"))
+; Org-mode's repository
+(add-to-list 'package-archives
+	     '("org" . "http://orgmode.org/elpa/") t)
 
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
@@ -40,6 +43,9 @@
 		   helm-projectile
 		   jedi
 		   magit
+		   ob-ipython
+		   org
+		   org-plus-contrib
 		   projectile
 		   python-mode
 		   realgud
@@ -97,15 +103,36 @@
 ;; Helm is an Emacs incremental and narrowing framework
 (require 'helm-config)
 
+;; ob-python is an Emacs library that allows Org mode to evaluate code
+;; blocks using a Jupyter kernel (Python by default).
+(require 'ob-ipython)
+
+;; Org-mode settings
+;; activate ipython in Org-Babel
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ipython . t)
+   ;; other languages..
+   ))
+;don't prompt me to confirm everytime I want to evaluate a block
+(setq org-confirm-babel-evaluate nil)
+; display/update images in the buffer after I evaluate
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+
+
 ;; With dired-x installed you can use F, which visits all marked
 ;; files. It will attempt to open files and give each file its own
 ;; window — which you may not want. To avoid this, and open them in
 ;; the background, type C-u F.
 (require 'dired-x)
 
+;; Ein settings
 ;;Emacs IPython Notebook (EIN) provides a IPython Notebook client and
 ;;integrated REPL (like SLIME) in Emacs.
 (require 'ein)
+
+;; disable bell entirely
+(setq ring-bell-function 'ignore)
 
 (global-flycheck-mode t)
 
