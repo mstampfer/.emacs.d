@@ -48,7 +48,7 @@
 		   org-plus-contrib
 		   projectile
 		   python-mode
-		   realgud
+		   ;; realgud
 		   yasnippet
 		   ))
 
@@ -142,7 +142,7 @@
 ;; Use Helm to match M-x occur patterns
 (global-set-key [f6] 'helm-occur)
 
-(global-set-key [f7] 'realgud:trepan2)
+;; (global-set-key [f7] 'realgud:trepan2)
 
 ;;Recursively grep for REGEXP in FILES in directory tree rooted at DIR
 (global-set-key [f8] 'rgrep)
@@ -202,10 +202,11 @@
 
 (setq inhibit-startup-screen t)
 (setq jedi:complete-on-dot t)
-(load-library "realgud")
+;; (load-library "realgud")
 (load-library "cwd-projectile")
 (load-library "view-debug-line-number")
 (load-library "comment-uncomment-lines")
+(load-library "toggle-window-split")
 (load-library "uniquify-all-lines-region")
 
 ;; enable ido enable basic Ido support for files and buffers

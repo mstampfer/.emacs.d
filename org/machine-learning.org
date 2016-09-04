@@ -1,0 +1,124 @@
+* Perceptron
+** Advantages
+offers a nice and easygoing introduction to machine learning algorithms for classication
+** Disadvantages
+it never converges if the classes are not perfectly linearly separable
+** Features
+*** Parametric
+Estimate parameters from the training dataset and classify new data points without requiring the original training dataset anymore
+** Method
+The net input is then passed on to the activation function (here: the unit step function), which generates a binary output -1 or +1—the predicted class label of the sample. During the learning phase, this output is used to calculate the error of the prediction and update the weights.
+
+* Logistic Regression
+** Advantages
+Very easy to implement but performs very well on linearly separable classes.
+Can be easily updated, which is attractive when working with streaming data.
+** Disadvantages
+Tries to maximize the conditional likelihoods of the training data, which makes it more prone to outliers than SVMs
+** Features
+*** Parametric
+Estimate parameters from the training dataset and classify new data points without requiring the original training dataset anymore
+*** Extensible to multiclass classification
+a linear model for binary classi cation that can be extended to multiclass classi cation via the OvR technique.
+** Method
+Rather than choosing parameters that minimize the sum of squared errors (like in ordinary regression), estimation in logistic regression chooses parameters that maximize the likelihood of observing the sample values.
+
+* Support Vector Machines
+** Advantages
+Have decision boundaries with large margins so they tend to have a lower generalization error
+Can be easily kernelized to solve nonlinear classi cation problems.
+** Disadvantages
+** Features
+*** Parametric (linear SVM)
+Estimate parameters from the training dataset and classify new data points without requiring the original training dataset anymore
+*** Non-Parametric (kernel SVM)
+Can't be characterized by a  fixed set of parameters.
+The number of parameters grows with the training data.
+** Method
+Maximize the margin (distance between the positive and negative hyperplane).
+
+* Decision Trees
+** Advantages
+Easy to interpret
+** Disadvantages
+complex decision boundaries can easily result in overtting
+** Features
+** Features
+*** Parametric (linear SVM)
+Estimate parameters from the training dataset and classify new data points without requiring the original training dataset anymore
+*** Non-Parametric
+Can't be characterized by a  fixed set of parameters.
+The number of parameters grows with the training data.
+** Method
+The decision tree model learns a series of questions to infer the class labels of the samples
+1. Start at the tree root and split the data on the feature that results in the largest information gain (IG)
+2. In an iterative process repeat this splitting at each child node until the samples at each node all belong to the same class.
+3. In order to prevent overfitting, typically want to prune the tree by setting a limit for the maximal depth of the tree
+
+* Random Forests
+** Advantages
+Combine weak learners to build a more robust model, a strong learner.
+Better generalization error
+Is less susceptible to overfitting
+good classifcation performance, scalability, and ease of use
+** Disadvantages
+** Features
+*** Non-Parametric
+Can't be characterized by a  fixed set of parameters.
+The number of parameters grows with the training data.
+** Method
+a random forest can be considered as an ensemble of decision trees
+1. Draw a random bootstrap sample of size n (randomly choose n samples from the training set with replacement).
+2. Grow a decision tree from the bootstrap sample. 
+3. At each node:
+  1. Randomly select d features without replacement.
+  2. Split the node using the feature that provides the best split by maximizing the information gain.
+  3. Repeat the steps 1 to 2 k times.
+4. Aggregate the prediction by each tree to assign the class label by majority vote.
+
+* K-nn
+** Advantages
+Doesn't learn a discriminative function from the training data but memorizes the training dataset instead
+Memory-based approach: the classifier immediately adapts as we collect new training data. 
+** Disadvantages
+computational complexity for classifying new samples grows linearly with the number of samples in the training dataset in the worst-case scenario
+very susceptible to overfitting due to the curse of dimensionality
+** Features
+*** Non-Parametric
+Can't be characterized by a  fixed set of parameters.
+The number of parameters grows with the training data.
+** Method
+1. Choose the number of k and a distance metric.
+2. Find the k nearest neighbors of the sample that we want to classify.
+3. Assign the class label by majority vote.
+*** Non-Parametric
+Can't be characterized by a fixed set of parameters.
+The number of parameters grows with the training data.
+* PCA
+
+Userful for dimensionality reduction, exploratory data analyses, de-noising signals
+** Method
+In a nutshell, PCA finds the directions of maximum variance in high-dimensional data and projects it onto a new subspace with equal or fewer dimensions that the original one.
+
+1. Standardize the d -dimensional dataset.
+2. Construct the covariance matrix.
+3. Decompose the covariance matrix into its eigenvectors and eigenvalues.
+4. Select k eigenvectors that correspond to the k largest eigenvalues, where k is the dimensionality of the new feature subspace ( k ≤ d ).
+5. Construct a projection matrix W from the "top" k eigenvectors.
+6. Transform the d -dimensional input dataset X using the projection matrix W to obtain the new k -dimensional feature subspace.
+** Advantages
+** Disadvantages
+
+* K-Means
+** Advantages
+extremely easy to implement
+computationally very efficient compared to other clustering algorithms
+** Disadvantages
+have to specify the number of clusters k a priori. An inappropriate choice for k can result in poor clustering performance.
+** Method
+cluster analysis allows to find groups of similar objects, objects that are more related to each other than to objects in other groups.
+1. Randomly pick k centroids from the sample points as initial cluster centers.
+2. Assign each sample to the nearest centroid μ(j), j∈{1,...,k}.
+3. Move the centroids to the center of the samples that were assigned to it.
+4. Repeat the steps 2 and 3 until the cluster assignment do not change or a user-de ned tolerance or a maximum number of iterations is reached.
+   
