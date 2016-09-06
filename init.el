@@ -119,6 +119,9 @@
 ; display/update images in the buffer after I evaluate
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
 
+;; scale latex formulae png images in org-mode
+(setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+
 
 ;; With dired-x installed you can use F, which visits all marked
 ;; files. It will attempt to open files and give each file its own
