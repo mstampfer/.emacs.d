@@ -88,14 +88,41 @@
 (require 'magit)
 (global-set-key "\C-xg" 'magit-status)
 
-;; Auto Completion for GNU Emac
+;; Auto Completion for GNU Emacs
 (require 'auto-complete)
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+;; auto-complete mode extra settings
+(setq
+ global-auto-complete-mode t
+ ac-auto-start 2
+ ac-override-local-map nil
+ ac-use-menu-map t
+ ac-candidate-limit 20
+ ac-set-trigger-key "TAB"
+ ac-set-trigger-key "<tab>"
+ )
 
 ;; Automagically pair braces and quotes like TextMate
 (require 'autopair)
 
 ;; Yet another snippet extension for Emacs.
 (require 'yasnippet)
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+(yas-global-mode t)
+
+;; Remove Yasnippet's default tab key binding
+;; so it doesn't interfere with autocomplete
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+;; Set Yasnippet's key binding to shift+tab
+(define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
+;; Alternatively use Control-c + tab
+(define-key yas-minor-mode-map (kbd "\C-c TAB") 'yas-expand)
+
+;; Resize/transform images in image mode
+(add-hook 'image-mode-hook 'eimp-mode)
 
 ;; On-the-fly syntax checking
 (require 'flycheck)
@@ -160,14 +187,6 @@
 ;; data. This function doesn't require the region to be sorted. Bind
 ;; it to a key sequence "M-D"
 (bind-key "M-D" 'delete-duplicate-lines)
-
-
-;; auto-complete mode extra settings
-(setq
- ac-auto-start 2
- ac-override-local-map nil
- ac-use-menu-map t
- ac-candidate-limit 20)
 
 ;; Python mode settings
 (require 'python-mode)
