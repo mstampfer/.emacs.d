@@ -192,7 +192,8 @@
 (require 'python-mode)
 (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
 (setq py-electric-colon-active t)
-
+;; Enable readline based native completion.
+(setq python-shell-completion-native-enable nil)
 ;; tell emacs how to parse Tex
 (add-hook 'tex-mode-hook #'(lambda () (setq ispell-parser 'tex)))
 
