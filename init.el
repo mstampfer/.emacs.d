@@ -188,6 +188,15 @@
 ;; it to a key sequence "M-D"
 (bind-key "M-D" 'delete-duplicate-lines)
 
+;; C++ settings
+;; 
+(define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
+(define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
+(define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
+(define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
+
+(define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
+
 ;; Python mode settings
 (require 'python-mode)
 (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
@@ -319,6 +328,9 @@
  '(nrepl-message-colors
    (quote
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
+ '(package-selected-packages
+   (quote
+    (ggtags zenburn-theme yasnippet whole-line-or-region use-package tangotango-theme solarized-theme smartrep realgud python-mode org-plus-contrib org ob-ipython markdown-mode magit load-theme-buffer-local jedi isend-mode idea-darkula-theme icicles helm-projectile free-keys flycheck flx-ido find-file-in-repository exec-path-from-shell elisp-format el-get ein eimp crux color-theme autopair ac-anaconda)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(request-backend (quote url-retrieve))
