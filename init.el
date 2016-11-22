@@ -190,12 +190,12 @@
 
 ;; C++ settings
 ;; 
-(define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
-(define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
-(define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
-(define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
+;;(define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
+;;(define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
+;;(define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
+;;(define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
 
-(define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
+;;(define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
 
 ;; Python mode settings
 (require 'python-mode)
