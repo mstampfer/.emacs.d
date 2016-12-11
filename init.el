@@ -271,6 +271,8 @@
 ;; Turn on line numbers globally
 (global-linum-mode t)
 
+;; Load theme
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/") 
 ;;(load-theme 'idea-darkula t)
 (load-theme 'tangotango t)
 
@@ -385,6 +387,12 @@
 ;;(install-if-needed 'whole-line-or-region)
 
 
+% CLI matlab from the shell:
+% /Applications/MATLAB_R2016a.app/bin/matlab -nodesktop
+%
+% elisp setup for matlab-mode:
+(setq matlab-shell-command "/Applications/MATLAB_R2016b.app/bin/matlab")
+(setq matlab-shell-command-switches (list "-nodesktop"))
 
 (provide 'init)
 ;;; init.el ends here
